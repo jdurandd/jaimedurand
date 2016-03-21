@@ -1,0 +1,51 @@
+﻿@model SistemaKardexInventario.UI.Models.Loggin
+@{Layout = null;}
+
+ 
+
+@*@{
+    ViewBag.Title = "Index";
+}*@
+
+<!DOCTYPE html>
+
+
+
+
+<head>
+<title>Sistema de Kardex e Inventario</title>
+</head>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                @Html.Label("Usuario:")
+            </td>
+            <td>
+                @*@Html.TextBox("txtUsuario", null, new { @class = "form-control" })*@
+                @Html.TextBoxFor(x=> x.usuario)
+            </td> 
+        </tr>
+       <tr>
+           <td>
+               @Html.Label("Password:")
+           </td>
+           <td>
+               @*@Html.Password("txtPassword", null,null)*@
+               @Html.TextBoxFor(x=> x.password)
+           </td>
+       </tr>
+        <tr>
+            <td>
+              <button id="btnIngresar"  class="btn btn-primary" style="width:100px; height:33px "> Ingresar</button>
+            </td>
+        </tr>
+        
+    </table>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
