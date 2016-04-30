@@ -1,4 +1,4 @@
-﻿@model SistemaKardexInventario.UI.Models.Loggin
+﻿@model SistemaKardexInventario.UI.Models.User
 @{Layout = null;}
 
  
@@ -285,27 +285,33 @@
 
 </head>
 <body>
-    <div class="container">
-        <section id="content">
-            <form action="">
-                <h1>Sistema de kardex e Inventario</h1>
-                <div>
-                    <input type="text" placeholder="Username" required="" id="username" />
-                </div>
-                <div>
-                    <input type="password" placeholder="Password" required="" id="password" />
-                </div>
-                <div>
-                    <input type="submit" value="Log in" />
-                    @*<a href="#">Lost your password?</a>
-                    <a href="#">Register</a>*@
-                </div>
-            </form><!-- form -->
-            @*<div class="button">*@
+    @using (Html.BeginForm())
+    {
+        <div class="container">
+            <section id="content">
+                <form action="">
+                    <h1>Sistema de kardex e Inventario</h1>
+                    <div>
+                        @*<input type="text" placeholder="Username" required="" id="username" />*@
+                        @Html.TextBoxFor(x=> x.UserName)
+                    </div>
+                    <div>
+                        @*<input type="password" placeholder="Password" required="" id="password" />*@
+                        @Html.TextBoxFor(x => x.Password)
+                    </div>
+                    <div>
+                        <input type="submit" value="Log in" />
+                        @*<a href="#">Lost your password?</a>
+                            <a href="#">Register</a>*@
+                    </div>
+                </form><!-- form -->
+                @*<div class="button">*@
                 @*<a href="#">Download source file</a>*@
-          <!--  </div> button -->
-        </section><!-- content -->
-    </div><!-- container -->
+                <!--  </div> button -->
+            </section><!-- content -->
+        </div><!-- container -->
+    }
+
 </body>
 </html>
 

@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using SistemaKardexInventario.UI.Models;
+using SistemaKardexInventario.UI.DataAccess;
 
 
 namespace SistemaKardexInventario.UI.Controllers
 {
     public class LogginController : Controller
     {
+        DALC oDalc = new DALC();
+
         // GET: Loggin
         public ActionResult Index()
         {
@@ -18,11 +21,14 @@ namespace SistemaKardexInventario.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(Loggin model)
+        public ActionResult Index(User User)
         {
-            if()
+            if (oDalc.CheckUserLogin(User) > 0)
+            {
+                return RedirectToAction("Index", "Home");
 
-
+            }
+            return View();
         }
 
     }

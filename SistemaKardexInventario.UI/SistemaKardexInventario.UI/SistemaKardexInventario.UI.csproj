@@ -179,7 +179,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ErroresViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Loggin.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

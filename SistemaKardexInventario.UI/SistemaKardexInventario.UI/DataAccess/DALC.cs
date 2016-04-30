@@ -4,26 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Configuration;
+using SistemaKardexInventario.UI.Models;
+using System.Data;
 
 
 namespace SistemaKardexInventario.UI.DataAccess
 {
     public class DALC
-    {
-        static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SqlConecction"].ToString());
+    {   
+        string conStr = ConfigurationManager.ConnectionStrings["SqlConecction"].ConnectionString;
 
-        public static bool UserIsValid(string username, string password)
+        public int CheckUserLogin(User user)
         {
-            bool authenticated = false;
+            using (SqlConnection conObj = new SqlConnection(conStr))
+            {
+                SqlCommand comObj = new SqlCommand("uspLogin", conObj);
+                comObj.CommandType = CommandType.StoredProcedure;
+                comObj.Parameters.Add(new SqlParameter("@UserName", user.UserID));
+                comObj.Parameters.Add(new SqlParameter("@Password", user.Password));
+                conObj.Open();
+                return Convert.ToInt32(comObj.ExecuteScalar());
+            }
 
-            string query = string.Format("SELECT * FROM [User] WHERE Username = '{0}' AND Password = '{1}'", username, password);
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-            conn.Open();
-            SqlDataReader sdr = cmd.ExecuteReader();
-            authenticated = sdr.HasRows;
-            conn.Close();
-            return (authenticated);
         }
     }
 }
