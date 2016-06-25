@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SistemaKardexInventario.UI.Models;
 
+
 namespace SistemaKardexInventario.UI.Controllers
 {
     [Authorize]

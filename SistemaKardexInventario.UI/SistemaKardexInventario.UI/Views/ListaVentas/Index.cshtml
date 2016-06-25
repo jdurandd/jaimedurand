@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SistemaKardexInventario.UI.Models.ListaVentas>
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        width: 650px;
+        display: table;
+        border-collapse: collapse;
+        border: solid px #C5C5C5;
+        background-color: white;
+    }
+
+        .webgrid-table td, th {
+            border: 1px solid #C5C5C5;
+            padding: 3px 7px 2px;
+        }
+
+    .webgrid-header, .webgrid-header a {
+        background-color: #0094ff;
+        color: #ffffff;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    .webgrid-footer {
+    }
+
+    .webgrid-row-style {
+        padding: 3px 7px 2px;
+    }
+
+    .webgrid-alternating-row {
+        background-color: azure;
+        padding: 3px 7px 2px;
+    }
+
+    .col1Width {
+        width: 55px;
+    }
+
+    .col2Width {
+        width: 220px;
+    }
+</style>
+
+
+  
+
+
+@{
+    ViewBag.Title = "Ventas Confirmadas";
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 3);
+    grid.Pager(WebGridPagerModes.All);
+}
+<h2>Ventas Confirmadas</h2>
+
+@*Filtros Inicio*@
+
+@using (Html.BeginForm(null, null, FormMethod.Get))
+{
+    <fieldset>
+        @*<legend>Filtros</legend>*@
+        @Html.Label("fecVenta", "Fecha de Venta:")
+        @Html.TextBox("fecVenta")
+        @Html.Label("numCelular", "Número de Celular:")
+        @Html.TextBox("numCelular")
+        @Html.Label("nomCliente", "Nombre del Cliente:")
+      </fieldset>
+    <fieldset>
+        @Html.TextBox("nomCliente")
+        @Html.Label("ImeioSimcard", "Imei o SimCard:")
+        @Html.TextBox("ImeioSimcard")
+        <input type="submit" value="Buscar" />
+    </fieldset>
+}
+
+@*Filtros Fin*@
+
+<div id="gridContent" style="font-family: Arial; padding: 20px">
+    @grid.GetHtml(tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+                grid.Column(columnName: "dni", header: "Dni"),
+                grid.Column(columnName: "nomCliente", header: "Nombre del Cliente"),
+                grid.Column(columnName: "apellClilente", header: "Apellido del Cliente"),
+                grid.Column(columnName: "codArticulo", header: "Código del Artículo"),
+                grid.Column(columnName: "desArticulo", header: "Descripción del Artículo"),
+                grid.Column(columnName: "fecVenta", header: "Fecha de la Venta"),
+                grid.Column(columnName: "codigoCaja", header: "Código de Caja"),
+                grid.Column(columnName: "codigoTicket", header: "Código de Ticket"),
+                grid.Column(columnName: "precio", header: "Precio"),
+                grid.Column(columnName: "numCelular", header: "Número de Celular"),
+                grid.Column(columnName: "ImeioSimCard", header: "Imei o SimCard")
+    ))
+</div>
